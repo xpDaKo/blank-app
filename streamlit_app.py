@@ -51,15 +51,12 @@ def main():
                     weight = weight_dict.get(col, 1)
                     # 累加工时到字典
                     work_hours[cell.value] += weight
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader('姓名')
-        for name in work_hours.keys():
-            st.write(name)
-    with col2:
-        st.subheader('工时')
-        for value in work_hours.values():
-            st.write(value)
+    
+    
+    st.write('## 姓名_值班工时')
+    for name in work_hours.keys():
+        st.write(f'{name}:{work_hours[name]}')
+
 
 # 运行主函数
 if __name__ == "__main__":
