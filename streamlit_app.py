@@ -24,19 +24,16 @@ def main():
         # 选择第一个工作表
         sheet = workbook.worksheets[0]
 
-
-
-
         # 定义遍历的范围，这里以A2:N7为例，你可以根据需要修改
         start_row, end_row = 4, 45
         start_col, end_col = 3, 13  # A是1，B是2，以此类推
 
         # 定义权重字典，根据列号来分配权重
         weight_dict = {
-            3: 2,  # 3列（C列）权重为2
-            5: 2,  # 5列（E列）权重为2
-            7: 1,  # 7列（H列）权重为1
-            11: 1,  # 11列（L列）权重为1
+            3: 2.0,  # 3列（C列）权重为2
+            5: 2.0,  # 5列（E列）权重为2
+            7: 1.0,  # 7列（H列）权重为1
+            11: 1.0,  # 11列（L列）权重为1
             9: 1.5,  # 9列（I列）权重为1.5
             13: 1.5  # 13列（N列）权重为1.5
         }
@@ -51,11 +48,15 @@ def main():
                     weight = weight_dict.get(col, 1)
                     # 累加工时到字典
                     work_hours[cell.value] += weight
+
+        st.write('## 姓名_值班工时')
+        for name in work_hours.keys():
+            st.write(f'{name}:{work_hours[name]}')
     
-    
-    st.write('## 姓名_值班工时')
-    for name in work_hours.keys():
-        st.write(f'{name}:{work_hours[name]}')
+    else:
+        st.write('## 请上传大厅值班表')
+        st.write('### 文件格式为XLSX,XLS')
+
 
 
 # 运行主函数
